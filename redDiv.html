@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background: #000;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<button id="btn">变色</button>
+<script>
+    var div=document.querySelectorAll("div");
+    var btn=document.querySelector("#btn");
+    btn.onclick=function(){
+        for(var i=0;i<div.length;i++){
+            div[i].style.background="#f00"
+        }
+    }
+</script>
+</body>
+</html>

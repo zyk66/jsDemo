@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			width: 20px;
+			height: 20px;
+			display: inline-block;
+			margin-right: 10px;
+			position: relative;
+		}
+		.box1{
+			background: lightgreen;
+		}
+		.box2{
+			background: lightcoral;
+		}
+		.box3{
+			background: lightpink;
+		}
+		span{
+			//background: #fff;
+			display: inline-block;
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -5px;
+			margin-left: -5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1 box">
+		<span></span>
+	</div>
+	<div class="box2 box">
+		<span></span>
+	</div>
+	<div class="box3 box">
+		<span></span>
+	</div>
+	<script>
+		var box=document.querySelectorAll(".box");
+		var arr=["lightgreen","lightcoral","lightpink"]
+		for(var i=0;i<box.length;i++){
+			box[i].index=i;
+			box[i].onclick=function(){
+				for(var j=0;j<box.length;j++){
+					box[j].querySelector("span").style.background=arr[j]
+				}
+				//console.log(window.getComputedStyle(box[this.index]).backgroundColor)
+				document.body.style.background=window.getComputedStyle(box[this.index]).backgroundColor;
+				box[this.index].querySelector("span").style.background="#fff"
+			}
+		}
+	</script>
+</body>
+</html>

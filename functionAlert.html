@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" value="北京" id="val1">
+<input type="text" value="海淀" id="val2">
+<button id="btn">提交</button>
+<script>
+    var val1=document.querySelector("#val1");
+    var val2=document.querySelector("#val2");
+    var btn=document.querySelector("#btn");
+    btn.onclick=function(){
+        alert(val1.value)
+        alert(val2.value)
+    }
+</script>
+</body>
+</html>
