@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            color: green;
+            padding: 10px 15px;
+            margin: 12px 0;
+            background: #f0f0f0;
+            border: 1px dotted #333;
+            font: 12px/1.5 Courier New;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+<div>January(1),February(2),March(3),April(4),May(5),June(6),July(7),Aguest(8),September(9),October(10),November(11),December(12)
+</div>
+<input type="button" value="删除January(1)"/>
+<input type="button" value="删除December(12)"/>
+
+<div>0,1,2,3,4,5,6,7,8,9</div>
+<input type="button" value="复制"/>
+<input type="button" value="还原"/>
+
+<script>
+    var input=document.querySelectorAll("input");
+    var div=document.querySelectorAll("div");
+    function getArr(str){
+        var arr=str.split(',');
+        var arrs=[];
+        for(var i=0;i<arr.length;i++){
+            arrs.push(arr[i])
+        }
+        return arrs
+    }
+    var arr1=getArr(div[1].innerHTML)
+    input[2].onclick=function(){
+        var arr=getArr(div[1].innerHTML)+',';
+        arr+=arr;
+        div[1].innerHTML=arr;
+    };
+    input[3].onclick=function(){
+        div[1].innerHTML=arr1;
+    };
+
+
+
+
+
+    input[0].onclick=function(){
+        if(input[0].value=="删除January(1)"){
+            var txt=getArr(div[0].innerHTML);
+                txt.shift();
+            input[0].value="添加January(1)"
+        }else{
+            var txt=getArr(div[0].innerHTML);
+                txt.unshift("January(1)");
+            input[0].value="删除January(1)"
+        }
+        div[0].innerHTML=txt;
+    };
+    input[1].onclick=function(){
+        if(input[1].value=="删除December(12)"){
+            var txt=getArr(div[0].innerHTML);
+                txt.pop();
+            input[1].value="添加December(12)"
+        }else{
+            var txt=getArr(div[0].innerHTML);
+                txt.push("December(12)");
+            input[1].value="删除December(12)"
+        }
+        div[0].innerHTML=txt;
+    };
+
+</script>
+</body>
+</html>

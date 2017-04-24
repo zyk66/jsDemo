@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="all"><input type="checkbox"><span>全选</span></div><div id="fan"><input type="checkbox"><span>反选</span></div>
+<div id="check"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"><input type="checkbox"></div>
+<script>
+    var all=document.querySelector("#all").querySelector("input");
+    var fan=document.querySelector("#fan").querySelector("input");
+    var check=document.querySelector("#check").querySelectorAll("input");
+    all.onclick=function(){
+        for(var i=0;i<check.length;i++){
+            check[i].checked=this.checked;
+        }
+        a();
+    };
+    fan.onclick=function(){
+        for(var i=0;i<check.length;i++){
+            check[i].checked=!check[i].checked
+        }
+        a()
+    };
+    for(var i=0;i<check.length;i++){
+        check[i].onclick=function(){
+            a()
+        }
+    }
+    function a(){
+        var n=0;
+        for(var i=0;i<check.length;i++) {
+            check[i].checked && n++;
+        }
+        if(n==check.length){
+            all.checked=true;
+            document.querySelector("#all").querySelector("span").innerText="全不选"
+        }else{
+            all.checked=false;
+            document.querySelector("#all").querySelector("span").innerText="全选"
+
+        }
+    }
+
+</script>
+</body>
+</html>

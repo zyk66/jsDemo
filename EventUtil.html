@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="button" value="毫无用处的按钮">
+<input type="button" value="绑定click">
+<input type="button" value="解除绑定">
+<script>
+    var btn=document.querySelectorAll("input");
+    btn[1].onclick=function(){
+        addHandler(btn[0],"click",fn)
+    };
+    btn[2].onclick=function(){
+        removeHandler(btn[0],"click",fn)
+    };
+    function fn(){
+        alert("事件绑定成功")
+    }
+    function addHandler(ele, event, fn) {
+        if(ele.addEventListener){
+            ele.addEventListener(event, fn, false)
+        }else{
+            ele.attachEvent("on" + event, fn)
+        }
+    }
+    function removeHandler(ele, event, fn) {
+        if(ele.removeEventListener){
+            ele.removeEventListener(event, fn, false)
+        }else{
+            ele.detachEvent("on" + event, fn)
+        }
+    }
+</script>
+</body>
+</html>
