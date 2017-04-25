@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            display: none;
+            position: absolute;
+            background: lightpink;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="box">你好</div>
+<script>
+    var box=document.querySelector(".box");
+    document.oncontextmenu=function(e){
+        var e=e || window.event;
+        box.style.display="block";
+        box.style.left= e.clientX+5+'px';
+        box.style.top= e.clientY+5+'px';
+        return false
+    };
+    document.onclick=function(){
+        box.style.display="none"
+    }
+</script>
+</body>
+</html>

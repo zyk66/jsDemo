@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .list li{
+            display: inline-block;
+            width: 200px;
+        }
+        .list img{
+            width: 100%;
+        }
+        .box{
+            position: absolute;
+            display: none;
+        }
+        .box img{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="list">
+        <li><img src="images/1420569039506760.gif"></li>
+        <li><img src="images/18634523069354233.gif"></li>
+        <li><img src="images/18643319162372550.gif"></li>
+    </ul>
+    <div class="box"></div>
+    <script>
+        var list=document.querySelectorAll("li"),
+                box=document.querySelector(".box");
+        for(var i=0;i<list.length;i++){
+            list[i].index=i;
+            list[i].onmouseover=function(){
+                var img=document.createElement("img");
+                img.src=this.querySelector("img").src;
+                box.appendChild(img);
+                box.style.display="block"
+            };
+            list[i].onmousemove=function(e){
+                var e=e || window.event,
+                        offsetW=document.documentElement.offsetWidth- e.clientX;
+                if(offsetW<e.clientX+20){
+                    box.style.left= e.clientX-20-box.offsetWidth+'px';
+                }else{
+                    box.style.left= e.clientX+20+'px';
+                }
+                box.style.top= e.clientY+20+'px'
+            };
+            list[i].onmouseout=function(){
+              box.innerHTML=""
+                box.style.display="none"
+            }
+        }
+    </script>
+</body>
+</html>
