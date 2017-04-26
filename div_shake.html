@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            display: block;
+            background: lightcoral;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+<script>
+    var box=document.querySelector(".box"),
+            timer=null;
+    box.onclick=function(){
+        var i=0;
+        clearInterval(timer);
+        timer=setInterval(function(){
+            box.style.display=i++ % 2?"none":"block";
+            if(i==7)clearInterval(timer)
+        },80)
+    }
+</script>
+</body>
+</html>
