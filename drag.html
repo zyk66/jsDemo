@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        let box=document.querySelector(".box");
+        let w=box.offsetWidth;
+        box.onmousedown=function(e){
+            var  e=e || window.event;
+            let boxL=e.clientX-box.offsetLeft;
+            let boxT=e.clientY-box.offsetTop;
+            document.onmousemove=function(event){
+                var e=event || window.event;
+                let x= e.clientX-boxL;
+                let y= e.clientY-boxT;
+                box.style.left=x+'px';
+                box.style.top=y+'px';
+            }
+        };
+
+        box.onmouseup=function(){
+            document.onmousemove=null;
+        }
+    </script>
+</body>
+</html>
