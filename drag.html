@@ -14,15 +14,25 @@
             background: lightcoral;
             position: absolute;
         }
+        .back{
+            width: 100%;
+            background: lavenderblush;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <div class="box"></div>
+    <div class="box">
+        <div class="back">回去</div>
+    </div>
     <script>
         let box=document.querySelector(".box");
-        let w=box.offsetWidth;
+        let back=document.querySelector(".back");
+        let xLine,yLine,xs,ys
         box.onmousedown=function(e){
             var  e=e || window.event;
+            xLine=e.clientX;
+            yLine=e.clientY;
             let boxL=e.clientX-box.offsetLeft;
             let boxT=e.clientY-box.offsetTop;
             document.onmousemove=function(event){
@@ -31,7 +41,34 @@
                 let y= e.clientY-boxT;
                 box.style.left=x+'px';
                 box.style.top=y+'px';
+                xs=e.clientX;
+                ys=e.clientY;
+
             }
+        };
+        back.onclick=function () {
+            let timer=null;
+            let aa=xs-xLine,
+                bb=ys-yLine;
+            console.log(aa)
+            console.log(xLine)
+            timer=setInterval(function(){
+                if(box.offsetLeft==xLine){
+                    console.log(box.offsetLeft);
+                    console.log(xLine);
+                    clearInterval(timer)
+                }else{
+                    console.log(2);
+                    if(aa>0){
+                        box.style.left=xs-- +'px'
+                    }else{
+                        box.style.left=box.offsetLeft++ +'px'
+                    }
+                }
+
+
+
+            },20)
         };
 
         box.onmouseup=function(){
