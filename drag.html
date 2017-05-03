@@ -28,11 +28,12 @@
     <script>
         let box=document.querySelector(".box");
         let back=document.querySelector(".back");
-        let xLine,yLine,xs,ys
+        let xLine,yLine,xs,ys;
         box.onmousedown=function(e){
             var  e=e || window.event;
-            xLine=e.clientX;
-            yLine=e.clientY;
+            xLine=box.offsetLeft;
+            yLine=box.offsetTop;
+            //console.log(xLine)
             let boxL=e.clientX-box.offsetLeft;
             let boxT=e.clientY-box.offsetTop;
             document.onmousemove=function(event){
@@ -41,38 +42,55 @@
                 let y= e.clientY-boxT;
                 box.style.left=x+'px';
                 box.style.top=y+'px';
-                xs=e.clientX;
-                ys=e.clientY;
-
-            }
+                xs=box.offsetLeft;
+                ys=box.offsetTop;
+                //console.log(xs)
+                return false;
+            };
+            return false;
         };
+        back.onmousedown = function (event)
+        {
+            (event || window.event).cancelBubble = true
+        };
+
         back.onclick=function () {
             let timer=null;
             let aa=xs-xLine,
                 bb=ys-yLine;
             console.log(aa)
-            console.log(xLine)
+            //console.log(xLine)
             timer=setInterval(function(){
-                if(box.offsetLeft==xLine){
-                    console.log(box.offsetLeft);
-                    console.log(xLine);
+                if(box.offsetLeft==xLine && box.offsetTop<=yLine){
                     clearInterval(timer)
                 }else{
-                    console.log(2);
-                    if(aa>0){
-                        box.style.left=xs-- +'px'
+                    if(box.offsetLeft==xLine){
+                        box.offsetLeft=xLine
                     }else{
-                        box.style.left=box.offsetLeft++ +'px'
+                        if(aa>0){
+                            box.style.left=xs-- +'px'
+                        }else{
+                            box.style.left=box.offsetLeft++ +'px'
+                        }
                     }
+                    if(box.offsetTop==yLine){
+                        box.offsetTop=yLine
+                    }else{
+                        if(bb>0){
+                            box.style.top=ys-- +'px'
+                        }else{
+                            box.style.top=box.offsetTop++ +'px'
+                        }
+                    }
+
                 }
-
-
-
-            },20)
+            },20);
+            return false;
         };
 
         box.onmouseup=function(){
             document.onmousemove=null;
+            return false;
         }
     </script>
 </body>
